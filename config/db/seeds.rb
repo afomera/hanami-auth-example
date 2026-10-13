@@ -1,15 +1,10 @@
-# This seeds file should create the database records required to run the app.
-#
-# The code should be idempotent so that it can be executed at any time.
-#
-# To load the seeds, run `hanami db seed`. Seeds are also loaded as part of `hanami db prepare`.
+# frozen_string_literal: true
 
-# For example, if you have appropriate repos available:
-#
-#   category_repo = Hanami.app["repos.category_repo"]
-#   category_repo.create(title: "General")
-#
-# Alternatively, you can use relations directly:
-#
-#   categories = Hanami.app["relations.categories"]
-#   categories.insert(title: "General")
+# Seeds a demo account for trying the app: demo@example.com / "notebook demo password"
+user_repo = Hanami.app["repos.user_repo"]
+note_repo = Hanami.app["repos.note_repo"]
+
+unless user_repo.find_by_email("demo@example.com")
+  demo = user_repo.create(email_address: "demo@example.com", password: "notebook demo password")
+  note_repo.create(user_id: demo.id, title: "Welcome to Notebook", body: "Only you can see your notes.")
+end

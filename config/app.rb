@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "hanami"
+require "hanami/turbo"
 
 module Notebook
   class App < Hanami::App
@@ -12,5 +13,7 @@ module Notebook
       httponly: true,
       secure: Hanami.env?(:production)
     }
+
+    Hanami::Turbo.install(config)
   end
 end

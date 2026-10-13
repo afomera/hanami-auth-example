@@ -6,10 +6,32 @@
     <title>Notebook</title>
     <%= favicon_tag %>
     <%= stylesheet_tag "app" %>
+    <%= javascript_tag "app", defer: true %>
     <%= content_for :head %>
   </head>
   <body>
-    <%= yield %>
-    <%= javascript_tag "app" %>
+    <header class="site-header">
+      <a class="brand" href="<%= routes.path(:root) %>">Notebook</a>
+      <nav>
+        <% if authenticated? %>
+          <a href="<%= routes.path(:notes) %>">Notes</a>
+          <span class="who"><%= current_user.email_address %></span>
+          <%= form_for routes.path(:session), method: :delete, class: "sign-out", data: {turbo_confirm: "Sign out?"} do |f| %>
+            <%= f.submit "Sign out", class: "link" %>
+          <% end %>
+        <% else %>
+          <a href="<%= routes.path(:new_session) %>">Sign in</a>
+        <% end %>
+      </nav>
+    </header>
+
+    <main>
+      <%# The generated sign-in and password pages show their own flash messages. %>
+      <% unless request.path.start_with?("/session", "/passwords") %>
+        <% if flash[:notice] %><p role="status"><%= flash[:notice] %></p><% end %>
+        <% if flash[:alert] %><p role="alert"><%= flash[:alert] %></p><% end %>
+      <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

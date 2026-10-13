@@ -6,6 +6,7 @@ module Notebook
       schema :users, infer: true do
         associations do
           has_many :sessions
+          has_many :notes
         end
       end
     end

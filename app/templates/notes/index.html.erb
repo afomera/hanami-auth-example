@@ -1,0 +1,29 @@
+<h1>Your notes</h1>
+
+<%= form_for routes.path(:notes), class: "note-form" do |f| %>
+  <p>
+    <label for="note-title">Title</label>
+    <%= f.text_field "note.title", id: "note-title", required: true, maxlength: 200 %>
+  </p>
+  <p>
+    <label for="note-body">Note</label>
+    <%= f.text_area "note.body", id: "note-body", rows: 3 %>
+  </p>
+  <p><%= f.submit "Save note" %></p>
+<% end %>
+
+<% if notes.empty? %>
+  <p class="empty">No notes yet.</p>
+<% else %>
+  <ul class="notes">
+    <% notes.each do |note| %>
+      <li id="note-<%= note.id %>">
+        <h2><%= note.title %></h2>
+        <% unless note.body.empty? %><p><%= note.body %></p><% end %>
+        <%= form_for routes.path(:note, id: note.id), method: :delete, data: {turbo_confirm: "Delete “#{note.title}”?"} do |f| %>
+          <%= f.submit "Delete", class: "link" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

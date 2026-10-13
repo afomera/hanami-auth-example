@@ -1,0 +1,11 @@
+<section class="hero">
+  <h1>Notebook</h1>
+  <p>A tiny Hanami app showing <code>hanami generate auth</code>: this page is public, and your notes need you to sign in.</p>
+
+  <% if authenticated? %>
+    <p>Signed in as <strong><%= current_user.email_address %></strong>. You have <%= note_count %> <%= note_count == 1 ? "note" : "notes" %>.</p>
+    <p><a class="button" href="<%= routes.path(:notes) %>">Open your notes</a></p>
+  <% else %>
+    <p><a class="button" href="<%= routes.path(:new_session) %>">Sign in</a> or try <a href="<%= routes.path(:notes) %>">your notes</a>, which takes you to sign in first.</p>
+  <% end %>
+</section>

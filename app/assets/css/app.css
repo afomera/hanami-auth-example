@@ -1,5 +1,96 @@
-body {
-  background-color: #fff;
-  color: #000;
-  font-family: sans-serif;
+:root {
+  --bg: #fafaf7;
+  --fg: #1d1d1b;
+  --muted: #6b6b66;
+  --line: #e2e1db;
+  --accent: #b5372a;
+  --card: #fff;
+  color-scheme: light dark;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161614;
+    --fg: #ecebe6;
+    --muted: #9c9b94;
+    --line: #2f2e2a;
+    --accent: #e4705f;
+    --card: #1e1e1b;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+a { color: var(--accent); }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { font-weight: 700; color: var(--fg); text-decoration: none; }
+.site-header nav { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.who { color: var(--muted); font-size: 0.9em; }
+.sign-out { display: inline; margin: 0; }
+
+main { max-width: 40rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+label { display: block; font-weight: 600; margin-bottom: 0.25rem; }
+
+input[type=email], input[type=password], input[type=text], textarea {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  color: inherit;
+  font: inherit;
+}
+
+button, .button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button.link {
+  padding: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+[role=alert], [role=status] {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+[role=alert] { border-color: var(--accent); }
+
+.notes { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+.notes li { padding: 0.75rem 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+.notes h2 { font-size: 1.05rem; margin: 0 0 0.25rem; }
+.notes p { margin: 0 0 0.5rem; white-space: pre-wrap; }
+.notes form { margin: 0; }
+.empty { color: var(--muted); }
