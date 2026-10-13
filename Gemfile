@@ -26,6 +26,8 @@ gem "puma", ">= 7.1"
 gem "rake"
 gem "sqlite3"
 
+gem "argon2", "~> 2.3"
+
 group :development do
   gem "hanami-webconsole", github: "hanami/hanami-webconsole", branch: "main"
 end
