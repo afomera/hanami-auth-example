@@ -16,6 +16,8 @@ gem "hanami-view", github: "hanami/hanami-view", branch: "main"
 gem "dry-cli", github: "dry-rb/dry-cli", branch: "main"
 gem "dry-system", github: "dry-rb/dry-system", branch: "main"
 
+gem "hanami-turbo", "~> 0.1"
+
 gem "dry-types", "~> 1.7"
 gem "dry-operation", ">= 1.0.1"
 gem "dry-validation", "~> 1.11"
@@ -35,6 +37,7 @@ group :development, :test do
 end
 
 group :cli, :development do
+  gem "hanami-auth", path: "../hanami-auth"
   gem "hanami-reloader", github: "hanami/hanami-reloader", branch: "main"
 end
 
