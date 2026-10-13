@@ -1,0 +1,9 @@
+{
+  "name": "notebook",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "esbuild": "^0.28.1",
+    "hanami-assets": "hanami/assets-js#main"
+  }
+}
